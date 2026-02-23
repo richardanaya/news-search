@@ -1,6 +1,6 @@
 {
   "name": "news-search",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Search news on X like a professional. Cost-efficient, single-call CLI.",
   "type": "module",
   "main": "dist/index.js",
