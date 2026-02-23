@@ -22,10 +22,22 @@ USAGE FOR AI AGENTS:
   combined into a single API query using OR — this means one API
   call, one charge, maximum coverage.
 
-  GOOD (1 API call):
-    news-search --search 'gold prices' --search 'silver market' --search 'commodities'
+  MAXIMIZE COVERAGE — THINK BROADLY:
+  Before calling this tool, brainstorm every angle on what the user
+  wants: synonyms, tickers, related topics, key people, alternate
+  phrasings, and subtopics. Pack them ALL into a single call as
+  separate --search flags. More varied terms = broader coverage
+  at zero extra cost.
 
-  BAD (3 API calls — 3x the cost for overlapping results):
+  GOOD (1 API call, broad coverage):
+    news-search --search 'gold prices' --search 'XAU' --search 'gold rally' \
+                --search 'silver market' --search 'XAG' --search 'precious metals' \
+                --search 'commodities'
+
+  BAD (too narrow — misses synonyms and related angles):
+    news-search --search 'gold prices'
+
+  BAD (multiple calls — 3x the cost for overlapping results):
     news-search --search 'gold prices'
     news-search --search 'silver market'
     news-search --search 'commodities'
@@ -143,6 +155,8 @@ program
       ) {
         process.exit(1);
       }
+
+      process.exit(0);
     } catch (err: any) {
       console.error(`Fatal error: ${err?.message ?? String(err)}`);
       process.exit(1);
